@@ -53,9 +53,9 @@ cd installs
 INSTALLSDIR=$(dirname $(readlink -f $0))
 echo "INSTALLSDIR = $INSTALLSDIR"
 cd -
-#cd Ubuntu-18.04
 #OVFDIR=$(dirname $(readlink -f $0))
 #echo "OVFDIR = $OVFDIR"
 cd $P3CSIDIR
+cd NHLStream
 echo "Starting container image '$IMAGE_NAME'"
 docker run --rm -v $SCRIPTDIR:/deploy -v $CONFIGSDIR:/configs -v $INSTALLSDIR:/installs -v $OVFDIR:/ubun -v /etc/localtime:/etc/localtime:ro $IT $IMAGE_NAME 
