@@ -32,8 +32,8 @@ if [[ -t 0 ]]; then
     IT="$IT -t"
 fi
 
-P3CSIDIR=$(dirname $PWD)
-echo "P3CSIDIR = $P3CSIDIR"
+PREROOTDIR=$(dirname $PWD)
+echo "PREROOTDIR = $PREROOTDIR"
 SCRIPTDIR=$(dirname $(readlink -f $0))
 cd deploy/
 echo "$PWD"
@@ -49,13 +49,15 @@ CONFIGSDIR=$(dirname $(readlink -f $0))
 echo "CONFIGSDIR = $CONFIGSDIR"
 #cd ../installs && cd -
 cd -
-cd installs
-INSTALLSDIR=$(dirname $(readlink -f $0))
-echo "INSTALLSDIR = $INSTALLSDIR"
+#cd installs
+NHLSTREAMDIR=$(dirname $(readlink -f $0))
+echo "NHLSTREAMDIR = $NHLSTREAMDIR"
 cd -
 #OVFDIR=$(dirname $(readlink -f $0))
 #echo "OVFDIR = $OVFDIR"
-cd $P3CSIDIR
-cd NHLStream
+#cd $NHLSTREAMDIR
+#echo $(dirname $(readlink -f $0))
+#cd NHLStream
 echo "Starting container image '$IMAGE_NAME'"
-docker run --rm -v $SCRIPTDIR:/deploy -v $CONFIGSDIR:/configs -v $INSTALLSDIR:/installs -v $OVFDIR:/ubun -v /etc/localtime:/etc/localtime:ro $IT $IMAGE_NAME 
+docker run --rm -v $NHLSTREAMDIR:/NHLStream -v /etc/localtime:/etc/localtime:ro $IT $IMAGE_NAME
+#docker run --rm -v $SCRIPTDIR:/deploy -v $NHLSTREAMDIR:/NHLStream -v /etc/localtime:/etc/localtime:ro $IT $IMAGE_NAME
